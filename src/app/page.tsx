@@ -1,85 +1,114 @@
 import Navigation from "../components/Navigation";
+import ProjectCard from "../components/ProjectCard";
+// React component homepage
+//app/page.tsx -> main page url
 export default function HomePage() {
+  // This dict projects is temporary, for test only, we will need to setup a table on DB for store the project ideas, and mark 'Active' in field 'main_page' for it to display
+  // 1. 从API端点获取数据
+  //const response = await fetch('/api/projects?status=active');
+  // 2. API后端查询数据库
+  // SELECT * FROM projects WHERE main_page = 'Active'
+  // 3. 返回JSON数据
+  const projects = [
+  {
+    id: 1,
+    title: "Advanced Mortgage Calculator",
+    description: "Advanced mortgage calculator with inflation projection, showing how future payments compare to today's purchasing power. Make informed financial decisions with real-value insights.",
+    image: "/mortgageCalculator.png",
+    objectives: [
+      "Real-time inflation-adjusted payment calculations",
+      "Interactive amortization schedule visualization",
+      "Comparative analysis of different mortgage plans",
+      "Exportable financial reports"
+    ]
+  },
+  {
+    id: 2,
+    title: "Kaito VS iRobot", 
+    description: "A boy's one-sided war against a cleaning robot.",
+    image: "/kaitoRobot.png",
+    objectives: [
+      "Create engaging character animations",
+      "Develop adaptive AI behavior for the robot",
+      "Design interactive environment elements",
+      "Implement dynamic storytelling mechanics"
+    ]
+  },
+  {
+    id: 3,
+    title: "Pixel Polygonizer",
+    description: "Rapid feature detection and polygonization based on value thresholds (with QGIS or standalone). ",
+    image: "/greyscalePolygonizer.png",
+    objectives: [
+      "Accurate value-threshold based feature detection",
+      "Seamless QGIS integration",
+      "High-performance polygonization algorithms",
+      "ML-ready data export capabilities"
+    ]
+  }
+  ];
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      {/* Navigation*/}
+    //Long className below is a practice of Tailwind CSS
+    <div className="min-h-screen bg-gray-800 flex flex-col">
+      
+      {/* React component reference Navigation*/}
       <Navigation />
 
-
-      {/* 主要内容 */}
-      <main className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-        {/* 英雄区域 */}
+      {/*React JSX use HTML with JS/ts */}
+      {/* Main Content - 添加 flex-grow 让内容区域撑满剩余空间 */}
+      <main className="flex-grow max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+      
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-            欢迎来到
-            <span className="text-blue-600"> 9700km</span>
+          <h1 className="text-4xl font-extrabold text-gray-200 sm:text-5xl md:text-6xl pt-8">
+            Hello World! 
+            
           </h1>
-          <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-            我们是一个充满激情的开发团队，致力于创建有意义的项目和解决方案。
+          <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-8 md:text-xl md:max-w-5xl">
+            
+            The journey is starting this very moment. Please see ongoing project below...
           </p>
         </div>
 
-        {/* 团队特色 */}
+    
+        {/* 使用 ProjectCard 组件 */}
         <div className="mt-16">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <div className="text-center">
-              <div className="flex justify-center">
-                <div className="w-16 h-16 bg-blue-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">💻</span>
-                </div>
-              </div>
-              <h3 className="mt-4 text-lg font-medium text-gray-900">技术创新</h3>
-              <p className="mt-2 text-gray-500">
-                使用最新的技术栈，打造现代化的解决方案
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="flex justify-center">
-                <div className="w-16 h-16 bg-green-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">🤝</span>
-                </div>
-              </div>
-              <h3 className="mt-4 text-lg font-medium text-gray-900">团队协作</h3>
-              <p className="mt-2 text-gray-500">
-                跨越距离的合作，共同实现目标
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="flex justify-center">
-                <div className="w-16 h-16 bg-purple-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">🚀</span>
-                </div>
-              </div>
-              <h3 className="mt-4 text-lg font-medium text-gray-900">快速迭代</h3>
-              <p className="mt-2 text-gray-500">
-                从想法到实现，快速验证和迭代
-              </p>
-            </div>
-          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {projects.map((project) => (
+              <ProjectCard
+                key={project.id}
+                id={project.id}
+                title={project.title}
+                description={project.description}
+                image={project.image}
+                objectives={project.objectives}
+              />
+            ))}
+        </div>
         </div>
 
-        {/* 行动号召 */}
+            
+
+        
         <div className="mt-16 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            想了解更多？
+          <h2 className="text-3xl font-bold text-gray-200 mb-4">
+            More?
           </h2>
           <div className="space-x-4">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition duration-200">
-              查看项目
+            <button className="bg-purple-700 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-lg transition duration-200">
+              Connect with us
             </button>
-            <button className="border border-blue-600 text-blue-600 hover:bg-blue-50 font-bold py-2 px-6 rounded-lg transition duration-200">
-              了解团队
+            <button className="border border-purple-600 text-purple-600 hover:bg-gray-700 font-bold py-2 px-6 rounded-lg transition duration-200">
+              Email for an idea
             </button>
           </div>
         </div>
       </main>
 
-      {/* 页脚 */}
-      <footer className="bg-gray-800 text-white py-8">
+      
+      
+      <footer className="fixed bottom-0 left-0 w-full bg-black text-white py-1">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p>&copy; 2025 9700km studio. </p>
+          <p>&copy; 2025 9700km studio.  All rights reserved.</p>
         </div>
       </footer>
     </div>
