@@ -1,8 +1,15 @@
+'use client';
+
+import { useState } from 'react'; 
 import Navigation from "../components/Navigation";
 import ProjectCard from "../components/ProjectCard";
+import ConnectModal from "../components/ConnectModal";
+import EmailModal from "../components/EmailModal";
 // React component homepage
 //app/page.tsx -> main page url
 export default function HomePage() {
+  const [isConnectModalOpen, setIsConnectModalOpen] = useState(false);
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
   // This dict projects is temporary, for test only, we will need to setup a table on DB for store the project ideas, and mark 'Active' in field 'main_page' for it to display
   // 1. 从API端点获取数据
   //const response = await fetch('/api/projects?status=active');
@@ -13,7 +20,7 @@ export default function HomePage() {
   {
     id: 1,
     title: "Advanced Mortgage Calculator",
-    description: "Advanced mortgage calculator with inflation projection, showing how future payments compare to today's purchasing power. Make informed financial decisions with real-value insights.",
+    description: "Advanced mortgage calculator with inflation projection, showing how future payments compare to today's purchasing power.",
     image: "/mortgageCalculator.png",
     objectives: [
       "Real-time inflation-adjusted payment calculations",
@@ -91,13 +98,20 @@ export default function HomePage() {
         
         <div className="mt-16 text-center">
           <h2 className="text-3xl font-bold text-gray-200 mb-4">
-            More?
+            Want to know more?
           </h2>
           <div className="space-x-4">
-            <button className="bg-purple-700 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-lg transition duration-200">
+            <button 
+            onClick={() => setIsConnectModalOpen(true)} 
+            className="bg-purple-700 text-white font-bold py-2.5 px-6 rounded-lg 
+                      transition-all duration-300 
+                      hover:bg-transparent hover:border-2 hover:border-purple-600 
+                      hover:text-purple-600 hover:scale-105 transform">
               Connect with us
             </button>
-            <button className="border border-purple-600 text-purple-600 hover:bg-gray-700 font-bold py-2 px-6 rounded-lg transition duration-200">
+            <button 
+            onClick={() => setIsEmailModalOpen(true)}
+            className="border-2 border-purple-400 text-purple-300 hover:bg-purple-400 hover:text-gray-900 font-bold py-2 px-6 rounded-xl transition-all duration-300 hover:scale-105">
               Email for an idea
             </button>
           </div>
@@ -111,6 +125,14 @@ export default function HomePage() {
           <p>&copy; 2025 9700km studio.  All rights reserved.</p>
         </div>
       </footer>
+      <ConnectModal 
+          isOpen={isConnectModalOpen} 
+          onClose={() => setIsConnectModalOpen(false)} 
+        />
+      <EmailModal 
+        isOpen={isEmailModalOpen} 
+        onClose={() => setIsEmailModalOpen(false)} 
+      />
     </div>
   );
 }

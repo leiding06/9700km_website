@@ -1,7 +1,7 @@
 // components/ProjectCard.tsx
 import React from 'react';
 import Image from 'next/image';
-
+//TS Structure
 interface ProjectCardProps {
     id: number;
     title: string;
@@ -10,6 +10,7 @@ interface ProjectCardProps {
     objectives?: string[];
 }
 
+// Declare the type and use it for the React component: 这个变量是一个React函数组件，它接受的props类型是ProjectCardProps
 const ProjectCard: React.FC<ProjectCardProps> = ({ 
     title, 
     description, 
@@ -17,18 +18,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     objectives = []
 }) => {
     return (
+        //React component content
         <div className="group w-full h-96 relative"> 
             {/* 简化翻转容器 - 移除复杂样式 */}
             <div className="relative w-full h-full transition-all duration-500 group-hover:opacity-0 group-hover:scale-95">
                 
                 {/* The first side */}
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden h-full">
-                    <div className="h-48 bg-gray-200 relative">
+                    <div className="h-60 bg-gray-200 relative">
                         <Image 
                             src={image} 
                             alt={title}
                             fill
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 50vw"
                             className="object-cover"
                         />
                     </div>
