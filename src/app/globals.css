@@ -24,3 +24,103 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* 蓝粉紫渐变 */
+.cursor-glow {
+  width: 40px;
+  height: 40px;
+  background: 
+    radial-gradient(
+      circle at 35% 35%,
+      rgba(96, 165, 250, 0.9) 0%,       /* 蓝色 */
+      rgba(139, 92, 246, 0.7) 20%,      /* 紫色 */
+      rgba(192, 132, 252, 0.6) 40%,     /* 浅紫 */
+      rgba(236, 72, 153, 0.5) 60%,      /* 粉色 */
+      rgba(249, 168, 212, 0.3) 80%,     /* 浅粉 */
+      transparent 100%
+    ),
+    radial-gradient(
+      circle at 65% 65%,
+      rgba(59, 130, 246, 0.8) 0%,       /* 深蓝 */
+      rgba(168, 85, 247, 0.6) 30%,      /* 紫罗兰 */
+      rgba(232, 121, 249, 0.4) 60%,     /* 亮紫 */
+      transparent 90%
+    );
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  filter: blur(15px) brightness(1.2);
+  mix-blend-mode: screen;
+  animation: rotate-hue 8s linear infinite;
+}
+
+/* 色相旋转动画 */
+@keyframes rotate-hue {
+  0% {
+    filter: blur(15px) brightness(1.2) hue-rotate(0deg);
+  }
+  100% {
+    filter: blur(15px) brightness(1.2) hue-rotate(360deg);
+  }
+}
+
+
+
+
+
+.cursor-glow.hover {
+  width: 30px;
+  height: 30px;
+  filter: blur(6px) brightness(1.5);
+  background: 
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(59, 130, 246, 0.9) 0%,
+      rgba(139, 92, 246, 0.8) 30%,
+      rgba(236, 72, 153, 0.7) 60%,
+      transparent 60%
+    );
+  animation: none;
+}
+
+
+/* p in the about me */
+.max-w-4xl.mx-auto.text-center p {
+  text-shadow: 2px 2px 4px rgba(123, 52, 217, 0.8);
+}
+
+
+
+/* 对应的CSS */
+.animate-meteor {
+  animation: meteor 4s linear infinite;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1),
+    rgba(192, 132, 252, 0.8),
+    rgba(168, 85, 247, 0.6),
+    transparent
+  );
+  box-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.5),
+    0 0 20px rgba(192, 132, 252, 0.4);
+  border-radius: 50%;
+  transform: rotate(-45deg);
+}
+
+@keyframes meteor {
+  0% {
+    transform: rotate(-45deg) translateX(-100px) translateY(-100px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-45deg) translateX(500px) translateY(500px);
+    opacity: 0;
+  }
+}
