@@ -28,7 +28,7 @@ export default function ResumeNavigation({
     };
 
     return (
-        <nav className="fixed top-0 left-0 right-0 bg-gradient-to-r from-gray-900 via-purple-900 to-gray-900 border-b border-purple-600/30 z-50">
+        <nav className="fixed top-0 left-0 right-0 bg-black border-b border-gray-800 z-50 backdrop-blur-sm bg-opacity-90"> 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-20">
             
@@ -36,14 +36,14 @@ export default function ResumeNavigation({
             <div className="flex items-center space-x-6">
                 <a
                 href={backUrl}
-                className="group flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
+                className="group flex items-center space-x-2 text-gray-300 hover:text-white  transition-colors"
                 >
-                <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center group-hover:bg-purple-700 transition-colors">
+                <div className="w-10 h-10 bg-purple-600 rounded-full hover:outline flex items-center justify-center group-hover:bg-purple-700 transition-colors">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                     </svg>
                 </div>
-                <span className="font-medium">Home</span>
+                <span className="font-medium">9700 Home</span>
                 </a>
                 
                 <div className="h-8 w-px bg-gray-600"></div>
@@ -58,21 +58,21 @@ export default function ResumeNavigation({
             <div className="flex items-center space-x-6">
                 <button
                 onClick={() => scrollToSection('projects')}
-                className="text-gray-300 hover:text-white transition-colors font-medium text-sm"
+                className="text-gray-300 hover:text-white hover:outline hover:outline-2 hover:outline-purple-400 hover:outline-offset-2 transition-colors font-medium text-md"
                 >
                 Projects
                 </button>
                 
                 <button
                 onClick={() => scrollToSection('contact')}
-                className="text-gray-300 hover:text-white transition-colors font-medium text-sm"
+                className="text-gray-300 hover:text-white hover:outline hover:outline-2 hover:outline-purple-400 hover:outline-offset-2 transition-colors font-medium text-"
                 >
-                Contact
+                Experience
                 </button>
                 
                 <button
                 onClick={() => scrollToSection('about')}
-                className="text-gray-300 hover:text-white transition-colors font-medium text-sm"
+                className="text-gray-300 hover:text-white hover:outline hover:outline-2 hover:outline-purple-400 hover:outline-offset-2 transition-colors font-medium text-md"
                 >
                 More about me
                 </button>
@@ -80,7 +80,7 @@ export default function ResumeNavigation({
                 {/* 可选：添加一个醒目的行动按钮 */}
                 <button
                 onClick={() => scrollToSection('contact')}
-                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                className="bg-grey-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-md font-medium transition-colors"
                 >
                 Get in Touch
                 </button>
