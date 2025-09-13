@@ -58,10 +58,10 @@ export default function ResumeNavigation({
             <div className="flex items-center space-x-6">
 
                 <button
-                onClick={() => scrollToSection('skills')}
+                onClick={() => scrollToSection('tech-stack')}
                 className="text-gray-300 hover:text-white hover:outline hover:outline-2 hover:outline-purple-400 hover:outline-offset-2 transition-colors font-medium text-md"
                 >
-                Skills
+                Tech-Stack
                 </button>
 
                 <button

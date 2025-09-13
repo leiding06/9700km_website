@@ -1,7 +1,7 @@
 import ResumeNavigation from '../../../components/NavigationResume';
 import CustomCursor from '../../../components/CustomCursor'; 
 import ProjectCard from "../../../components/ProjectCard";
-
+import TechStack from '../../../components/TechStack';
 export default function LeiDingResume() {
     const projects = [
     {
@@ -66,6 +66,15 @@ export default function LeiDingResume() {
                 
             </div>
             </section>
+
+            {/* Skills Section */}
+            <section id="tech-stack" className="py-20 bg-gray-900">
+                <div className="max-w-6xl mx-auto px-6">
+                    <h2 className="text-xl font-bold text-white mb-12 text-center">Tech-Stack</h2>
+                    <TechStack />
+                </div>
+                </section>
+
 
            {/* Current Role */}
             <section
