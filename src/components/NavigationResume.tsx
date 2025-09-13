@@ -56,6 +56,21 @@ export default function ResumeNavigation({
 
             {/* Right corner: resume nav */}
             <div className="flex items-center space-x-6">
+
+                <button
+                onClick={() => scrollToSection('skills')}
+                className="text-gray-300 hover:text-white hover:outline hover:outline-2 hover:outline-purple-400 hover:outline-offset-2 transition-colors font-medium text-md"
+                >
+                Skills
+                </button>
+
+                <button
+                onClick={() => scrollToSection('current')}
+                className="text-gray-300 hover:text-white hover:outline hover:outline-2 hover:outline-purple-400 hover:outline-offset-2 transition-colors font-medium text-"
+                >
+                Current
+                </button>
+
                 <button
                 onClick={() => scrollToSection('projects')}
                 className="text-gray-300 hover:text-white hover:outline hover:outline-2 hover:outline-purple-400 hover:outline-offset-2 transition-colors font-medium text-md"
@@ -63,12 +78,7 @@ export default function ResumeNavigation({
                 Projects
                 </button>
                 
-                <button
-                onClick={() => scrollToSection('contact')}
-                className="text-gray-300 hover:text-white hover:outline hover:outline-2 hover:outline-purple-400 hover:outline-offset-2 transition-colors font-medium text-"
-                >
-                Experience
-                </button>
+                
                 
                 <button
                 onClick={() => scrollToSection('about')}
@@ -80,7 +90,7 @@ export default function ResumeNavigation({
                 {/* 可选：添加一个醒目的行动按钮 */}
                 <button
                 onClick={() => scrollToSection('contact')}
-                className="bg-grey-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-md font-medium transition-colors"
+                className="bg-grey-600 hover:bg-purple-700  text-white text-italic px-4 py-2 rounded-lg text-md font-medium transition-colors"
                 >
                 Get in Touch
                 </button>

@@ -22,7 +22,7 @@ export default function MembersPage() {
     const teamMembers: TeamMember[] = [
         // Core Team
         {
-        name: "Lei Ding",
+        name: "Lei Ding (UK)",
         role: "Co-Founder & Full-stack Developer",
         linkedin: "https://linkedin.com/in/lei-ding-92117b1b9",
         image:"/ld_profile.png",
@@ -30,7 +30,7 @@ export default function MembersPage() {
         slug:"lei-ding",
         },
         {
-        name: "Wei Wu", 
+        name: "Wei Wu (JP)", 
         role: "Co-Founder & Could Engineer",
         linkedin: "https://linkedin.com/in/唯-呉-462a82371",
         category: 'core',
