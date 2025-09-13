@@ -69,13 +69,16 @@ export default function LeiDingResume() {
 
            {/* Current Role */}
             <section
-                id="current"
-                className="relative py-20 min-h-[400px] bg-fixed bg-cover bg-center"
-                style={{ backgroundImage: "url('/GIS.png')" }}
-                >
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/70 pointer-events-none"></div>
+            id="current"
+            className="relative py-20 min-h-[300px] bg-fixed bg-cover bg-center"
+            style={{ backgroundImage: "url('/GIS.png')" }}
+            >
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black/70 pointer-events-none"></div>
                 
+
+
+            {/* Content */}    
             <div className="relative z-10 max-w-4xl mx-auto px-6">
             <h2 className="text-3xl font-bold text-white mb-12 text-center">Current Position</h2>
         
