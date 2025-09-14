@@ -2,6 +2,7 @@ import ResumeNavigation from '../../../components/NavigationResume';
 import CustomCursor from '../../../components/CustomCursor'; 
 import ProjectCard from "../../../components/ProjectCard";
 import TechStack from '../../../components/TechStack';
+import Tangram from "../../../components/Tangram";
 export default function LeiDingResume() {
     const projects = [
     {
@@ -151,22 +152,39 @@ export default function LeiDingResume() {
             
             
             
-            
-            
-            
-            
-            
-            {/* About Section */}
-            <section id="about" className="py-20 bg-black">
-            <div className="max-w-4xl mx-auto">
-                <h2 className="text-3xl font-bold text-white mb-8 text-center">More About Me</h2>
-                <p className="text-xl mt-6 text-gray-300 text-center">
-                And if you ask me about my hobbies, I might tell you about shipwrecks and in-danger coastal archaeology.
-                And I love math (yes, let the stereotypes roll).
-                I also hit gym 4-5 times a week and love to play silly video games (a dynamic nerd?).
-                </p>
+            {/* Play with a Tangram */}
+            <section id="Puzzle" className="py-20 bg-black">
+            <div className="max-w-4xl mx-auto px-6">
+                    <h2 className="text-xl text-white mb-4 text-center">Play with a Tangram</h2>
+                    <Tangram width={900} height={600}  />
             </div>
             </section>
+            
+            
+            {/* More About Section */}
+            <section id="about" className="py-20 bg-black">
+                
+                <div className="max-w-4xl mx-auto">
+                    <h2 className="text-3xl font-bold text-white mb-8 text-center">More About Me</h2>
+                    
+                    <p className="text-md mt-6 text-gray-300 text-center">
+                    Outside of work, I’m fascinated by shipwrecks and coastal archaeology at risk from erosion.  
+                    I also love math and logic puzzles, and spend weekends solving problems just for fun.  
+                    When I’m not at a desk, you’ll usually find me at the gym 4–5 times a week or catching waves in Devon.
+                    </p>
+                    
+                    <p className="text-md mt-6 text-gray-300 text-center">
+                    My name, <span className="text-purple-300 font-semibold">Lei</span>, means “flower bud” in Mandarin (Not 'Lee', please)  
+                    Interestingly, “lei” in Hawaiian also refers to a flower necklace.  
+                    A nice cultural coincidence, even though I’m not much of a fan of flowers myself (I do enjoy visiting other people’s gardens tho).
+                    </p>
+                    
+                    <p className="text-md mt-6 text-gray-300 text-center">
+                    Unlike many programmers who started coding in childhood, I took the long way around before discovering this passion.  
+                    That journey has given me a broader perspective, and I bring that mix of experiences into everything I do.
+                    </p>
+                </div>
+                </section>
 
             {/* Contact Section */}
         

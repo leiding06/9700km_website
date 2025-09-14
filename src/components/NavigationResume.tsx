@@ -28,9 +28,9 @@ export default function ResumeNavigation({
     };
 
     return (
-        <nav className="fixed top-0 left-0 right-0 bg-black border-b border-gray-800 z-50 backdrop-blur-sm bg-opacity-90"> 
+        <nav className="fixed top-0 left-0 right-0 bg-black border-b border-gray-800 z-40 backdrop-blur-sm bg-opacity-90"> 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-20">
+            <div className="flex justify-between items-center h-15">
             
             {/* Left corner: back to home */}
             <div className="flex items-center space-x-6">
@@ -78,7 +78,12 @@ export default function ResumeNavigation({
                 Projects
                 </button>
                 
-                
+                <button
+                onClick={() => scrollToSection('puzzle')}
+                className="text-gray-300 hover:text-white hover:outline hover:outline-2 hover:outline-purple-400 hover:outline-offset-2 transition-colors font-medium text-md"
+                >
+                Puzzle
+                </button>
                 
                 <button
                 onClick={() => scrollToSection('about')}
