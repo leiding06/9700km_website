@@ -79,7 +79,7 @@ export default function Tangram({
     };
     
     {/*used for log position for building the function of check winning
-    */}
+    
         const logCurrentPositions = () => {
         pieces.forEach(p => {
             const centerX = p.x + p.width / 2;
@@ -87,7 +87,7 @@ export default function Tangram({
             console.log(`{ id: "${p.id}", x: ${centerX.toFixed(2)}, y: ${centerY.toFixed(2)} },`);
         });
     };
-    {/**/}
+    */}
     const onPointerDownPiece = (e: React.PointerEvent, id: string) => {
         if (isComplete) return;
         const piece = pieces.find((p) => p.id === id);
@@ -165,14 +165,14 @@ export default function Tangram({
                 <p className="text-sm">If there is a gap, then probably somethings is wrong...</p>
 
                 <div className="flex gap-2">
-                    {/*button for log position*/}
+                    {/*button for log position*
                     <button 
                         onClick={logCurrentPositions}
                         className="px-4 border border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white rounded-md transition-colors text-sm"
                     >
                         Log Positions
                     </button>
-                    {/**/}
+                    */}
                     <button 
                         onClick={resetPieces}
                         className="px-4 border border-gray-300 text-gray-300 hover:bg-gray-300 hover:text-gray-800 rounded-md transition-colors text-sm"
