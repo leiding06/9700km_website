@@ -12,7 +12,6 @@ type Piece = {
     draggable?: boolean;
 };
 
-// 初始化拼图（除了 frame）
 const initialPieces: Piece[] = [
     { id: "p1", src: "/tangram-pieces/bluePurple.png", x: 20, y: 20, width: 148.564, height: 190.500 },
     { id: "p2", src: "/tangram-pieces/green.png", x: 20, y: 220, width: 113.132, height: 254.279 },
@@ -28,7 +27,7 @@ const initialPieces: Piece[] = [
 ];
 
 
-
+// TODO: 增加结束的效果
 
 
 export default function Tangram({
