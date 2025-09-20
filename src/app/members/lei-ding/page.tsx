@@ -35,7 +35,7 @@ export default function LeiDingResume() {
     
     
     return (
-        <div className="min-h-screen bg-gray-800">
+        <div className="min-h-screen ">
         <CustomCursor/>
         <ResumeNavigation personName="Lei Ding" />
         
@@ -69,7 +69,7 @@ export default function LeiDingResume() {
             </section>
 
             {/* Skills Section */}
-            <section id="tech-stack" className="py-20 bg-gray-900">
+            <section id="tech-stack" className="py-20 bg-black">
                 <div className="max-w-6xl mx-auto px-6">
                     <h2 className="text-xl font-bold text-white mb-12 text-center">Tech-Stack</h2>
                     <TechStack />
@@ -80,11 +80,11 @@ export default function LeiDingResume() {
            {/* Current Role */}
             <section
             id="current"
-            className="relative py-20 min-h-[300px] bg-fixed bg-cover bg-center"
+            className="relative py-80 min-h-[500px] bg-fixed bg-cover bg-center"
             style={{ backgroundImage: "url('/GIS.png')" }}
             >
             {/* Overlay */}
-            <div className="absolute inset-0 bg-black/70 pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black  via-black/30 via-60% to-black pointer-events-none"></div>
                 
 
 
@@ -96,9 +96,9 @@ export default function LeiDingResume() {
             <div className="mb-12">
                 <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold text-purple-400">Senior GIS Officer & Team Lead & Developer</h3>
-                    <span className="text-gray-400">02/2024 – Present</span>
+                    <span className="text-gray-400">02/2022 – Present</span>
                 </div>
-                <p className="text-gray-300 mb-2">Headland Archaeology · Leading GIS innovation in archaeology</p>
+                <p className="text-gray-300 mb-2">Leading GIS innovation in archaeology</p>
                 <p className="text-gray-300 mb-2"> Headland Archaeology is the UK’s leading, privately-owned provider of heritage services to the development and construction sectors.</p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
@@ -131,7 +131,7 @@ export default function LeiDingResume() {
             </section>
             
 
-            <section id="projects" className="py-20 bg-gray-900">
+            <section id="projects" className="py-20 bg-black">
             <div className="max-w-4xl mx-auto">
                 <h2 className="text-3xl font-bold text-white mb-8 text-center">Projects</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -153,7 +153,7 @@ export default function LeiDingResume() {
             
             
             {/* Play with a Tangram */}
-            <section id="Puzzle" className="py-20 bg-black">
+            <section id="puzzle" className="py-20 bg-black">
             <div className="max-w-4xl mx-auto px-6">
                     <h2 className="text-xl text-white mb-4 text-center">Play with a Tangram</h2>
                     <Tangram width={900} height={600}  />
@@ -187,7 +187,7 @@ export default function LeiDingResume() {
 
             {/* Contact Section */}
         
-            <section id="contact" className="py-20 bg-gray-900">
+            <section id="contact" className="py-20 bg-black/50">
             <div className="max-w-3xl mx-auto px-6">
                 <h2 className="text-4xl font-bold text-center text-white mb-12 drop-shadow-md">
                 Get in Touch
