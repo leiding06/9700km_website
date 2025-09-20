@@ -25,19 +25,19 @@ const initialPieces: Piece[] = [
     { id: "p11", src: "/tangram-pieces/lightPink.png", x: 700, y: 550, width: 145.640, height: 64.209 },
 ];
 
-// wining position
 const winningPositions = [
-    { id: "p1", x: 341.55, y: 389.14 },
-    { id: "p2", x: 394.74, y: 357.14 },
-    { id: "p3", x: 485.66, y: 449.26 },
-    { id: "p4", x: 421.19, y: 136.31 },
-    { id: "p5", x: 504.59, y: 293.81 },
-    { id: "p6", x: 397.71, y: 232.81 },
-    { id: "p7", x: 304.79, y: 228.93 },
-    { id: "p8", x: 527.05, y: 166.31 },
-    { id: "p9", x: 616.39, y: 231.96 },
+    // winning position
+    { id: "p1", x: 340.80, y: 390.80 },
+    { id: "p2", x: 395.25, y: 359.14 },
+    { id: "p3", x: 485.66, y: 455.26 },
+    { id: "p4", x: 420.50, y: 136.31 },
+    { id: "p5", x: 506.00, y: 293.81 },
+    { id: "p6", x: 398.71, y: 232.81 },
+    { id: "p7", x: 305.79, y: 230.93 },
+    { id: "p8", x: 526.00, y: 166.50 },
+    { id: "p9", x: 615.00, y: 231.96 },
     { id: "p10", x: 597.53, y: 391.61 },
-    { id: "p11", x: 488.27, y: 388.54 },
+    { id: "p11", x: 488.27, y: 391.54 },
 ];
 
 
@@ -59,14 +59,12 @@ export default function Tangram({
         origY: number;
     } | null>(null);
 
-    // Check if complete
     const checkCompletion = (currentPieces: Piece[]) => {
-        const tolerance = 20; // buffer zone
+        const tolerance = 15; 
         const isSolved = currentPieces.every(piece => {
             const winningPos = winningPositions.find(pos => pos.id === piece.id);
             if (!winningPos) return false;
             
-            // check centroid for each piece
             const currentCenterX = piece.x + piece.width / 2;
             const currentCenterY = piece.y + piece.height / 2;
 
@@ -80,17 +78,16 @@ export default function Tangram({
         }
     };
     
-    // Print location when testing
-    {/*const logCurrentPositions = () => {
+    {/*used for log position for building the function of check winning
+    */}
+        const logCurrentPositions = () => {
         pieces.forEach(p => {
             const centerX = p.x + p.width / 2;
             const centerY = p.y + p.height / 2;
             console.log(`{ id: "${p.id}", x: ${centerX.toFixed(2)}, y: ${centerY.toFixed(2)} },`);
         });
     };
-    */}
-
-    // Start
+    {/**/}
     const onPointerDownPiece = (e: React.PointerEvent, id: string) => {
         if (isComplete) return;
         const piece = pieces.find((p) => p.id === id);
@@ -105,7 +102,6 @@ export default function Tangram({
         };
     };
 
-    // Moving
     const onPointerMove = (e: React.PointerEvent) => {
         if (draggingRef.current) {
             const d = draggingRef.current;
@@ -115,27 +111,49 @@ export default function Tangram({
                 const newPieces = prev.map((p) =>
                     p.id === d.id ? { ...p, x: d.origX + dx, y: d.origY + dy } : p
                 );
-                // ontime check
-                checkCompletion(newPieces); 
                 return newPieces;
             });
         }
     };
 
-    // Moving
     const onPointerUp = () => {
         if (draggingRef.current) {
+            const draggedPiece = pieces.find(p => p.id === draggingRef.current?.id);
+            const winningPos = winningPositions.find(pos => pos.id === draggedPiece?.id);
+            
+            if (draggedPiece && winningPos) {
+                const snapTolerance = 20;
+                const currentCenterX = draggedPiece.x + draggedPiece.width / 2;
+                const currentCenterY = draggedPiece.y + draggedPiece.height / 2;
+                
+                const xWithinTolerance = Math.abs(currentCenterX - winningPos.x) <= snapTolerance;
+                const yWithinTolerance = Math.abs(currentCenterY - winningPos.y) <= snapTolerance;
+                
+                if (xWithinTolerance && yWithinTolerance) {
+                    const finalX = winningPos.x - draggedPiece.width / 2;
+                    const finalY = winningPos.y - draggedPiece.height / 2;
+
+                    setPieces(prev => {
+                        const newPieces = prev.map(p =>
+                            p.id === draggedPiece.id ? { ...p, x: finalX, y: finalY } : p
+                        );
+                        checkCompletion(newPieces); // check new location
+                        return newPieces;
+                    });
+                } else {
+                    checkCompletion(pieces); // if not snapped , still check
+                }
+            }
+
             draggingRef.current = null;
             checkCompletion(pieces);
         }
     };
 
-    // reset
     const resetPieces = () => {
         setPieces(initialPieces);
         setIsComplete(false);
     };
-
 
     return (
         <div className="w-full bg-black/40 rounded-lg p-4">
@@ -147,20 +165,19 @@ export default function Tangram({
                 <p className="text-sm">If there is a gap, then probably somethings is wrong...</p>
 
                 <div className="flex gap-2">
-                    {/* Log positions when testing
+                    {/*button for log position*/}
                     <button 
                         onClick={logCurrentPositions}
                         className="px-4 border border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white rounded-md transition-colors text-sm"
                     >
                         Log Positions
                     </button>
-                    */}
+                    {/**/}
                     <button 
                         onClick={resetPieces}
                         className="px-4 border border-gray-300 text-gray-300 hover:bg-gray-300 hover:text-gray-800 rounded-md transition-colors text-sm"
                     >
-                        Reset
-                    </button>
+                        Reset                    </button>
                 </div>
             </div>
             
@@ -177,7 +194,6 @@ export default function Tangram({
                     viewBox={`0 0 ${width} ${height}`}
                     preserveAspectRatio="xMidYMid meet"
                 >
-                    {/* frame */}
                     <image
                         href="/tangram-pieces/frame.png"
                         x={width / 2 - 224}
@@ -209,9 +225,10 @@ export default function Tangram({
                 </svg>
 
                 {isComplete && (
-                    <div className="absolute inset-0 flex items-center justify-center z-20">
-                        <div className="bg-green-600/90 text-white text-3xl font-bold p-8 rounded-xl shadow-lg animate-bounce">
-                            🎉 Congrats! You Solved It! 🎉
+                    <div className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none">
+                        <div className="absolute inset-0 z-0 border-4 rounded-xl animate-glowing-border"></div>
+                        <div className="relative text-white text-3xl font-bold animate-fade-in ">
+                            Congrats! You Solved It!
                         </div>
                     </div>
                 )}

@@ -93,7 +93,7 @@ body {
 
 
 
-/* 对应的CSS */
+/* Congrats */
 .animate-meteor {
   animation: meteor 4s linear infinite;
   height: 2px;
@@ -124,3 +124,36 @@ body {
     opacity: 0;
   }
 }
+
+
+
+@keyframes glowing-border {
+    0% {
+        border-color: rgba(52, 211, 153, 0.4); /* 绿色半透明 */
+        box-shadow: 0 0 5px rgba(52, 211, 153, 0.4);
+    }
+    50% {
+        border-color: rgba(52, 211, 153, 1); /* 绿色全透明 */
+        box-shadow: 0 0 30px rgba(52, 211, 153, 1);
+    }
+    100% {
+        border-color: rgba(52, 211, 153, 0.4);
+        box-shadow: 0 0 5px rgba(52, 211, 153, 0.4);
+    }
+}
+
+.animate-glowing-border {
+    animation: glowing-border 1.8s infinite alternate;
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; transform: scale(0.8); }
+  80% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+
+.animate-fade-in {
+    animation: fade-in 1s ease-out;
+}
+
