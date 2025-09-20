@@ -35,7 +35,7 @@ export default function LeiDingResume() {
     
     
     return (
-        <div className="min-h-screen ">
+        <div className="min-h-screen bg-black">
         <CustomCursor/>
         <ResumeNavigation personName="Lei Ding" />
         
@@ -187,7 +187,7 @@ export default function LeiDingResume() {
 
             {/* Contact Section */}
         
-            <section id="contact" className="py-20 bg-black/50">
+            <section id="contact" className="py-20 bg-black">
             <div className="max-w-3xl mx-auto px-6">
                 <h2 className="text-4xl font-bold text-center text-white mb-12 drop-shadow-md">
                 Get in Touch
