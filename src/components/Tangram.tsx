@@ -4,12 +4,11 @@ import React, { useRef, useState } from "react";
 
 type Piece = {
     id: string;
-    src: string; // image source
+    src: string;
     x: number;
     y: number;
     width: number;
     height: number;
-    draggable?: boolean;
 };
 
 const initialPieces: Piece[] = [
@@ -26,8 +25,20 @@ const initialPieces: Piece[] = [
     { id: "p11", src: "/tangram-pieces/lightPink.png", x: 700, y: 550, width: 145.640, height: 64.209 },
 ];
 
-
-// TODO: 增加结束的效果
+// wining position
+const winningPositions = [
+    { id: "p1", x: 341.55, y: 389.14 },
+    { id: "p2", x: 394.74, y: 357.14 },
+    { id: "p3", x: 485.66, y: 449.26 },
+    { id: "p4", x: 421.19, y: 136.31 },
+    { id: "p5", x: 504.59, y: 293.81 },
+    { id: "p6", x: 397.71, y: 232.81 },
+    { id: "p7", x: 304.79, y: 228.93 },
+    { id: "p8", x: 527.05, y: 166.31 },
+    { id: "p9", x: 616.39, y: 231.96 },
+    { id: "p10", x: 597.53, y: 391.61 },
+    { id: "p11", x: 488.27, y: 388.54 },
+];
 
 
 export default function Tangram({
@@ -39,113 +50,172 @@ export default function Tangram({
 }) {
     const [pieces, setPieces] = useState<Piece[]>(initialPieces);
     const [hoveredPiece, setHoveredPiece] = useState<string | null>(null);
+    const [isComplete, setIsComplete] = useState(false);
     const draggingRef = useRef<{
-    id: string;
-    startX: number;
-    startY: number;
-    origX: number;
-    origY: number;
+        id: string;
+        startX: number;
+        startY: number;
+        origX: number;
+        origY: number;
     } | null>(null);
 
+    // Check if complete
+    const checkCompletion = (currentPieces: Piece[]) => {
+        const tolerance = 20; // buffer zone
+        const isSolved = currentPieces.every(piece => {
+            const winningPos = winningPositions.find(pos => pos.id === piece.id);
+            if (!winningPos) return false;
+            
+            // check centroid for each piece
+            const currentCenterX = piece.x + piece.width / 2;
+            const currentCenterY = piece.y + piece.height / 2;
 
-  // Start
-const onPointerDownPiece = (e: React.PointerEvent, id: string) => {
+            const xWithinTolerance = Math.abs(currentCenterX - winningPos.x) <= tolerance;
+            const yWithinTolerance = Math.abs(currentCenterY - winningPos.y) <= tolerance;
+            return xWithinTolerance && yWithinTolerance;
+        });
+
+        if (isSolved && !isComplete) {
+            setIsComplete(true);
+        }
+    };
+    
+    // Print location when testing
+    {/*const logCurrentPositions = () => {
+        pieces.forEach(p => {
+            const centerX = p.x + p.width / 2;
+            const centerY = p.y + p.height / 2;
+            console.log(`{ id: "${p.id}", x: ${centerX.toFixed(2)}, y: ${centerY.toFixed(2)} },`);
+        });
+    };
+    */}
+
+    // Start
+    const onPointerDownPiece = (e: React.PointerEvent, id: string) => {
+        if (isComplete) return;
         const piece = pieces.find((p) => p.id === id);
         if (!piece) return;
         (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
         draggingRef.current = {
-        id,
-        startX: e.clientX,
-        startY: e.clientY,
-        origX: piece.x,
-        origY: piece.y,
+            id,
+            startX: e.clientX,
+            startY: e.clientY,
+            origX: piece.x,
+            origY: piece.y,
         };
     };
 
-  // Moving
-const onPointerMove = (e: React.PointerEvent) => {
+    // Moving
+    const onPointerMove = (e: React.PointerEvent) => {
         if (draggingRef.current) {
-        const d = draggingRef.current;
-        const dx = e.clientX - d.startX;
-        const dy = e.clientY - d.startY;
-        setPieces((prev) =>
-            prev.map((p) =>
-            p.id === d.id ? { ...p, x: d.origX + dx, y: d.origY + dy } : p
-            )
-        );
+            const d = draggingRef.current;
+            const dx = e.clientX - d.startX;
+            const dy = e.clientY - d.startY;
+            setPieces((prev) => {
+                const newPieces = prev.map((p) =>
+                    p.id === d.id ? { ...p, x: d.origX + dx, y: d.origY + dy } : p
+                );
+                // ontime check
+                checkCompletion(newPieces); 
+                return newPieces;
+            });
         }
     };
 
-const onPointerUp = () => {
-    draggingRef.current = null;
-};
-const resetPieces = () => {
+    // Moving
+    const onPointerUp = () => {
+        if (draggingRef.current) {
+            draggingRef.current = null;
+            checkCompletion(pieces);
+        }
+    };
+
+    // reset
+    const resetPieces = () => {
         setPieces(initialPieces);
+        setIsComplete(false);
     };
 
 
-return (
-    <div className="w-full bg-black/40 rounded-lg p-4">
-        
+    return (
+        <div className="w-full bg-black/40 rounded-lg p-4">
+            <div className="flex justify-between items-center mb-4 text-gray-400">
+                <h3 className="text-md font-semibold text-purple-500">
+                    Drag pieces to move. Try to fit them into the frame!
+                </h3>
+                
+                <p className="text-sm">If there is a gap, then probably somethings is wrong...</p>
 
-        <div className="flex justify-between items-center mb-4">
-            <h3 className="text-md font-semibold text-purple-500">
-                Drag pieces to move. Try to fit them into the frame!
-            </h3>
-            <p className="text-sm">If there is a gap, then probably somethings is wrong...</p>
-            <button 
-                onClick={resetPieces}
-                className="px-4 border border-gray-300 text-gray-300 hover:bg-gray-300 hover:text-gray-800 rounded-md transition-colors"
+                <div className="flex gap-2">
+                    {/* Log positions when testing
+                    <button 
+                        onClick={logCurrentPositions}
+                        className="px-4 border border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white rounded-md transition-colors text-sm"
+                    >
+                        Log Positions
+                    </button>
+                    */}
+                    <button 
+                        onClick={resetPieces}
+                        className="px-4 border border-gray-300 text-gray-300 hover:bg-gray-300 hover:text-gray-800 rounded-md transition-colors text-sm"
+                    >
+                        Reset
+                    </button>
+                </div>
+            </div>
+            
+            <div
+                className="relative border border-gray-700 rounded-md bg-white/5"
+                style={{ height: height + "px", touchAction: "none" }}
+                onPointerMove={onPointerMove}
+                onPointerUp={onPointerUp}
+                onPointerCancel={onPointerUp}
             >
-                Reset
-            </button>
-        </div>
-        <div
-            className="relative border border-gray-700 rounded-md bg-white/5"
-            style={{ height: height + "px", touchAction: "none" }}
-            onPointerMove={onPointerMove}
-            onPointerUp={onPointerUp}
-            onPointerCancel={onPointerUp}
-        >
-            <svg
-                width="100%"
-                height="100%"
-                viewBox={`0 0 ${width} ${height}`}
-                preserveAspectRatio="xMidYMid meet"
-            >
-            {/* frame */}
-            <image
-                href="/tangram-pieces/frame.png"
-                x={width / 2 - 224}
-                y={height / 2 - 200}
-                width={448.473}
-                height={392.498}
-                opacity={0.8}
-            />
-
-            {pieces.map((p) => (
-                <image
-                    key={p.id}
-                    href={p.src}
-                    x={p.x}
-                    y={p.y}
-                    width={p.width}
-                    height={p.height}
-                    onPointerDown={(e) => onPointerDownPiece(e, p.id)}
-                    onMouseEnter={() => setHoveredPiece(p.id)}//React
-                    onMouseLeave={() => setHoveredPiece(null)}//React
-                    style={{ 
-                                cursor: "grab", 
+                <svg
+                    width="100%"
+                    height="100%"
+                    viewBox={`0 0 ${width} ${height}`}
+                    preserveAspectRatio="xMidYMid meet"
+                >
+                    {/* frame */}
+                    <image
+                        href="/tangram-pieces/frame.png"
+                        x={width / 2 - 224}
+                        y={height / 2 - 200}
+                        width={448.473}
+                        height={392.498}
+                        opacity={0.8}
+                    />
+                    
+                    {pieces.map((p) => (
+                        <image
+                            key={p.id}
+                            href={p.src}
+                            x={p.x}
+                            y={p.y}
+                            width={p.width}
+                            height={p.height}
+                            onPointerDown={(e) => onPointerDownPiece(e, p.id)}
+                            onMouseEnter={() => setHoveredPiece(p.id)}
+                            onMouseLeave={() => setHoveredPiece(null)}
+                            style={{ 
+                                cursor: isComplete ? "default" : "grab", 
                                 touchAction: "none",
                                 filter: hoveredPiece === p.id ? ' brightness(1.2) drop-shadow(0 0 8px rgba(255, 255, 255, 1))' : 'none',
-                                transition: 'filter 0.2s ease， stroke-white'
+                                transition: 'filter 0.2s ease'
                             }}
                         />
-                ))}
-            </svg>
-            
-        </div>
-        
+                    ))}
+                </svg>
+
+                {isComplete && (
+                    <div className="absolute inset-0 flex items-center justify-center z-20">
+                        <div className="bg-green-600/90 text-white text-3xl font-bold p-8 rounded-xl shadow-lg animate-bounce">
+                            🎉 Congrats! You Solved It! 🎉
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     );
-    }
+}
