@@ -174,11 +174,10 @@ export default function LeiDingResume() {
                     </p>
                     
                     <p className="text-md mt-6 text-gray-300 text-center">
-                    My name, <span className="text-purple-300 font-semibold">Lei</span>, means “flower bud” in Mandarin (Not 'Lee', please)  
-                    Interestingly, “lei” in Hawaiian also refers to a flower necklace.  
-                    A nice cultural coincidence, even though I’m not much of a fan of flowers myself (I do enjoy visiting other people’s gardens tho).
+                    {"My name, "}
+                    <span className="text-purple-300 font-semibold">Lei</span>
+                    {", means “flower bud” in Mandarin. Interestingly, “lei” in Hawaiian also refers to a flower necklace. A nice cultural coincidence, even though I’m not much of a fan of flowers myself (I do enjoy visiting other people’s gardens tho)."}
                     </p>
-                    
                     <p className="text-md mt-6 text-gray-300 text-center">
                     Unlike many programmers who started coding in childhood, I took the long way around before discovering this passion.  
                     That journey has given me a broader perspective, and I bring that mix of experiences into everything I do.
