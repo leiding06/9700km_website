@@ -33,7 +33,7 @@ export default function Navigation() {
     { href: "/", label: "HOME" },
     { href: "/members", label: "MEMBER" },
     { href: "/projects", label: "PROJECTS" },
-    { href: "/ideas", label: "IDEAS" }
+    
   ];
 
   return (
@@ -46,7 +46,7 @@ export default function Navigation() {
 
           <div className="flex items-center">
             <Image 
-              src="/logo_number.png" 
+              src="/LOGO_9700km_bk.png" 
               alt="9700km Logo" 
               width={80} 
               height={80} 

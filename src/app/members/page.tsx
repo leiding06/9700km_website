@@ -54,7 +54,7 @@ export default function MembersPage() {
 
     return (
         //Long className below is a practice of Tailwind CSS
-        <div className="min-h-screen bg-gray-800 flex flex-col  ">
+        <div className="min-h-screen bg-black flex flex-col  ">
             {/* React component reference Navigation*/}
             <Navigation />
             <main className="flex-grow py-16 px-4 sm:px-6 lg:px-8">
@@ -67,7 +67,7 @@ export default function MembersPage() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 ">
                     {coreTeam.map((member, index) => (
-                    <div key={index} className="bg-gray-800 rounded-2xl p-8 transition-colors bg-[url('/bk2.jpg')] hover:border-2 hover:border-purple-600  group"  
+                    <div key={index} className="bg-black rounded-2xl p-8 border-2 border-transparent transition-colors bg-[url('/bk2.jpg')] hover:border-purple-600  group"  
                     onClick={() => window.location.href = `/members/${member.slug}`}>
                         
                         <div className="text-center">

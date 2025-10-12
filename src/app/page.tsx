@@ -56,7 +56,7 @@ export default function HomePage() {
   ];
   return (
     //Long className below is a practice of Tailwind CSS
-    <div className="min-h-screen bg-gray-800 flex flex-col">
+    <div className="min-h-screen bg-black flex flex-col">
       
       {/* React component reference Navigation*/}
       <Navigation />
@@ -77,7 +77,7 @@ export default function HomePage() {
         </div>
 
     
-        {/* 使用 ProjectCard 组件 */}
+        {/* Hide this because no enough project info-- 使用 ProjectCard 组件 
         <div className="mt-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {projects.map((project) => (
@@ -92,10 +92,10 @@ export default function HomePage() {
             ))}
         </div>
         </div>
-
+    */}
             
 
-        
+        {/*Orginal pop up contact window- retired
         <div className="mt-16 text-center">
           <h2 className="text-3xl font-bold text-gray-200 mb-4">
             Want to know more?
@@ -116,6 +116,69 @@ export default function HomePage() {
             </button>
           </div>
         </div>
+          */}
+        {/* Contact Section */}
+        
+            <section id="contact" className="py-20 bg-black">
+            <div className="max-w-3xl mx-auto px-6">
+                <h2 className="text-4xl font-bold text-center text-white mb-12 drop-shadow-md">
+                Get in Touch
+                </h2>
+
+                <form
+                action="https://formspree.io/f/mdklylyq"
+                method="POST"
+                className="bg-gray-800/60 backdrop-blur-md border border-purple-600/30 rounded-2xl p-8 shadow-lg space-y-6"
+                >
+                {/* Email */}
+                <div>
+                    <label htmlFor="email" className="block text-purple-300 mb-2 font-medium">
+                    Your Email
+                    </label>
+                    <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    required
+                    className="w-full px-4 py-3 rounded-lg bg-gray-900/80 border border-purple-500/40 text-white 
+                                focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition"
+                    placeholder="you@example.com"
+                    />
+                </div>
+
+                {/* Message */}
+                <div>
+                    <label htmlFor="message" className="block text-purple-300 mb-2 font-medium">
+                    Your Message
+                    </label>
+                    <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={5}
+                    className="w-full px-4 py-3 rounded-lg bg-gray-900/80 border border-purple-500/40 text-white 
+                                focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition"
+                    placeholder="Write your message here..."
+                    />
+                </div>
+
+                {/* Error message (HTML5 validation handles required fields) */}
+                <p className="text-red-400 hidden peer-invalid:block">
+                    Please fill all required fields.
+                </p>
+
+                {/* Submit button */}
+                <button
+                    type="submit"
+                    className="w-full py-3 rounded-lg bg-gradient-to-r from-purple-600 via-fuchsia-600 to-purple-700 
+                            text-white font-semibold text-lg shadow-md 
+                            hover:scale-105 hover:shadow-purple-600/50 transition-transform duration-300"
+                >
+                    Send Message
+                </button>
+                </form>
+            </div>
+            </section>
 
         
       </main>
