@@ -66,13 +66,14 @@ export default function HomePage() {
       <main className="flex-grow max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
       
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold text-gray-200 sm:text-5xl md:text-6xl pt-8">
+          <h1 className="text-2xl font-extrabold text-gray-200 sm:text-5xl md:text-6xl pt-8">
             Hello World! 
             
           </h1>
           <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-8 md:text-xl md:max-w-5xl">
-            
-            The journey is starting this very moment. Please see ongoing project below...
+            9700km is the distance between the first two members in this team, and where the team name came from. 
+            We are childhood friends in Shanghai, but now one works in the UK and the other in Japan. 
+            We aim to design, plan, and develop tools, websites, and games purely from our own curiosity and crafted for people we care about. 
           </p>
         </div>
 
