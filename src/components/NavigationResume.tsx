@@ -1,5 +1,5 @@
 'use client';
-
+import React, { useState, useRef, useEffect } from "react";
 interface ResumeNavigationProps {
     personName: string;
     backUrl?: string;
@@ -11,6 +11,7 @@ interface ResumeNavigationProps {
  * @prop {string} personName - The name of the person whose resume is being viewed.
  * @prop {string} [backUrl=/] - The URL to go back to when the back button is clicked.
  */
+
 export default function ResumeNavigation({ 
     personName, 
     backUrl = "/" 
@@ -26,9 +27,35 @@ export default function ResumeNavigation({
         });
         }
     };
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const menuRef = useRef<HTMLDivElement | null>(null);
+    const buttonRef = useRef<HTMLButtonElement | null>(null);
 
+    // 点击外部自动关闭
+    useEffect(() => {
+        if (!isMenuOpen) return;
+
+        const handleClick = (e: MouseEvent | TouchEvent) => {
+        if (
+            menuRef.current &&
+            !menuRef.current.contains(e.target as Node) &&
+            buttonRef.current &&
+            !buttonRef.current.contains(e.target as Node)
+        ) {
+            setIsMenuOpen(false);
+        }
+        };
+
+        document.addEventListener("mousedown", handleClick);
+        document.addEventListener("touchstart", handleClick);
+
+        return () => {
+        document.removeEventListener("mousedown", handleClick);
+        document.removeEventListener("touchstart", handleClick);
+        };
+    }, [isMenuOpen]);
     return (
-        <nav className="fixed top-0 left-0 right-0 bg-black border-b border-gray-800 z-40 backdrop-blur-sm bg-opacity-90"> 
+        <nav className="fixed top-0 left-0 right-0 bg-black border-b border-gray-800 z-40 backdrop-blur-sm "> 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-15">
             
@@ -54,53 +81,45 @@ export default function ResumeNavigation({
                 </div>
             </div>
 
-            {/* Right corner: resume nav */}
-            <div className="flex items-center space-x-6">
-
-                <button
-                onClick={() => scrollToSection('tech-stack')}
-                className="text-gray-300 hover:text-white hover:outline hover:outline-2 hover:outline-purple-400 hover:outline-offset-2 transition-colors font-medium text-md"
+            {/* 汉堡包按钮与菜单：全尺寸都显示 */}
+            <div className="relative">
+            <button
+                ref={buttonRef}
+                className="focus:outline-none"
+                onClick={() => setIsMenuOpen(v => !v)}
+                aria-label="Open menu"
                 >
-                Tech-Stack
+                <svg className="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
                 </button>
-
-                <button
-                onClick={() => scrollToSection('current')}
-                className="text-gray-300 hover:text-white hover:outline hover:outline-2 hover:outline-purple-400 hover:outline-offset-2 transition-colors font-medium text-"
+                {isMenuOpen && (
+                <div
+                    ref={menuRef}
+                    className="absolute right-0 top-12 w-52 bg-black border border-gray-700 rounded-xl shadow-lg py-2 z-50 flex flex-col"
                 >
-                Current
+                <button className="px-4 py-2 text-left text-gray-100 hover:bg-purple-600 rounded transition" onClick={() => scrollToSection("tech-stack")}>
+                    Tech-Stack
                 </button>
-
-                <button
-                onClick={() => scrollToSection('projects')}
-                className="text-gray-300 hover:text-white hover:outline hover:outline-2 hover:outline-purple-400 hover:outline-offset-2 transition-colors font-medium text-md"
-                >
-                Projects
+                <button className="px-4 py-2 text-left text-gray-100 hover:bg-purple-600 rounded transition" onClick={() => scrollToSection("current")}>
+                    Current
                 </button>
-                
-                <button
-                onClick={() => scrollToSection('puzzle')}
-                className="text-gray-300 hover:text-white hover:outline hover:outline-2 hover:outline-purple-400 hover:outline-offset-2 transition-colors font-medium text-md"
-                >
-                Puzzle
+                <button className="px-4 py-2 text-left text-gray-100 hover:bg-purple-600 rounded transition" onClick={() => scrollToSection("projects")}>
+                    Projects
                 </button>
-                
-                <button
-                onClick={() => scrollToSection('about')}
-                className="text-gray-300 hover:text-white hover:outline hover:outline-2 hover:outline-purple-400 hover:outline-offset-2 transition-colors font-medium text-md"
-                >
-                More about me
+                <button className="px-4 py-2 text-left text-gray-100 hover:bg-purple-600 rounded transition" onClick={() => scrollToSection("puzzle")}>
+                    Puzzle
                 </button>
-
-                {/* Right corner: contact */}
-                <button
-                onClick={() => scrollToSection('contact')}
-                className="bg-grey-600 hover:bg-purple-700  text-white text-italic px-4 py-2 rounded-lg text-md font-medium transition-colors"
-                >
-                Get in Touch
+                <button className="px-4 py-2 text-left text-gray-100 hover:bg-purple-600 rounded transition" onClick={() => scrollToSection("about")}>
+                    More about me
                 </button>
+                <button className="px-4 py-2 text-left text-gray-100 hover:bg-purple-600 rounded transition" onClick={() => scrollToSection("contact")}>
+                    Get in Touch
+                </button>
+                </div>
+            )}
             </div>
-            </div>
+        </div>
         </div>
         </nav>
     );

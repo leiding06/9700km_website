@@ -131,10 +131,80 @@ export default function LeiDingResume() {
             </div>
             </section>
             
+            {/* Current Role */}
+            <section
+            id="current"
+            className="relative py-80 min-h-[500px] bg-fixed bg-cover bg-center"
+            style={{ backgroundImage: "url('/code_bk.png')" }}
+            >
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black  via-black/0 via-40% to-black pointer-events-none"></div>
+                
+
+
+            {/* What Else I Do */}    
+            <div className="relative z-10 max-w-4xl mx-auto px-6">
+            <h2 className="text-3xl font-bold text-white mb-12 text-center">What Else I Do</h2>
+        
+        
+            <div className="mb-12">
+                <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-xl font-semibold text-purple-400">Open Source Contributor & Software Engineer</h3>
+                    <span className="text-gray-400">05/2024 – Present</span>
+                </div>
+                <p className="text-gray-300 mb-4 text-center">
+                    Dedicated to building and sharing tools for GIS, web apps, and plugin development.
+                    Proud to contribute to the open source community and continually refine my programming skills.
+                </p>
+                <div className="flex justify-center gap-4">
+                <a
+                    href="https://github.com/leiding06"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 mt-4 text-purple-400 hover:text-white transition"
+                    >
+                    {/* GitHub Icon（SVG） */}
+                    <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.262.82-.58 0-.286-.01-1.04-.015-2.04-3.338.726-4.042-1.613-4.042-1.613-.546-1.387-1.333-1.756-1.333-1.756-1.09-.746.083-.73.083-.73 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.606-2.665-.304-5.467-1.332-5.467-5.93 0-1.31.47-2.38 1.236-3.22-.124-.304-.536-1.527.117-3.18 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 013.003-.404c1.02.005 2.045.138 3.003.404 2.29-1.553 3.297-1.23 3.297-1.23.654 1.653.242 2.876.12 3.18.77.84 1.235 1.91 1.235 3.22 0 4.61-2.807 5.624-5.48 5.92.43.372.823 1.102.823 2.222 0 1.606-.014 2.903-.014 3.296 0 .32.216.697.825.578C20.565 21.796 24 17.297 24 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                    Personal GitHub
+                    </a>
+                    </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <div className="bg-gray-900 p-4 rounded-lg">
+                        <h4 className="text-purple-300 font-semibold mb-2">Technical Leadership</h4>
+                        <ul className="text-gray-300 text-sm space-y-1">
+                            <li>• Contributed code, plugin and documentation to open source projects</li>
+                            <li>• Developed Apps for personal interests</li>
+                            <li>• Engineering robotic/IoT solutions for my house</li>
+                            <li>• Actively mentor and support newcomers to GIS through training sessions</li>
+                        </ul>
+                    </div>
+                    
+                    <div className="bg-gray-900 p-4 rounded-lg">
+                        <h4 className="text-purple-300 font-semibold mb-2">🛠 Tech Stack</h4>
+                        <div className="flex flex-wrap gap-2">
+                            <span className="bg-purple-600 px-2 py-1 rounded text-xs text-white">Java</span>
+                            <span className="bg-purple-600 px-2 py-1 rounded text-xs text-white">Python</span>
+                            <span className="bg-purple-600 px-2 py-1 rounded text-xs text-white">C</span>
+                            <span className="bg-purple-600 px-2 py-1 rounded text-xs text-white">JS & TS</span>
+                            <span className="bg-purple-600 px-2 py-1 rounded text-xs text-white">C++</span>
+                            <span className="bg-purple-600 px-2 py-1 rounded text-xs text-white">C#</span>
+                            <span className="bg-purple-600 px-2 py-1 rounded text-xs text-white">Node.js</span>
+                            <span className="bg-purple-600 px-2 py-1 rounded text-xs text-white">REST</span>
+                            <span className="bg-purple-600 px-2 py-1 rounded text-xs text-white">React</span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            </div>
+            </section>
+            
 
             <section id="projects" className="py-20 bg-black">
             <div className="max-w-4xl mx-auto">
-                <h2 className="text-3xl font-bold text-white mb-8 text-center">Projects</h2>
+                <h2 className="text-3xl font-bold text-white mb-8 text-center">Projects Example</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {projects.map((project) => (
                     <ProjectCard
@@ -174,14 +244,16 @@ export default function LeiDingResume() {
                     When I’m not at a desk, you’ll usually find me at the gym 4–5 times a week or catching waves in Devon.
                     </p>
                     
-                    <p className="text-md mt-6 text-gray-300 text-center">
-                    {"My name, "}
-                    <span className="text-purple-300 font-semibold">Lei</span>
-                    {", means “flower bud” in Mandarin. Interestingly, “lei” in Hawaiian also refers to a flower necklace. A nice cultural coincidence, even though I am not much of a fan of flowers myself."}
-                    </p>
+                    
                     <p className="text-md mt-6 text-gray-300 text-center">
                     Unlike many programmers who started coding in childhood, I took the long way around before discovering this passion.  
                     That journey has given me a broader perspective, and I bring that mix of experiences into everything I do.
+                    </p>
+
+                    <p className="text-md mt-6 text-gray-300 text-center">
+                    Before moving to the UK, I spent nearly eight years in Shanghai working across roles from exhibition curator to online marketing manager and product manager. 
+                    Eventually, I realized I wanted something different. A role centered on research, tangible skills, and working with objects, without the constant networking and dress codes. 
+                    I didn’t initially plan to become a developer or software engineer, but sometimes life leads you in new directions when you keep working hard and learning with purpose.
                     </p>
                 </div>
                 </section>

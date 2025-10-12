@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 type Piece = {
     id: string;
@@ -88,6 +88,24 @@ export default function Tangram({
         });
     };
     */}
+
+    const svgRef = useRef<SVGSVGElement | null>(null);
+    const [svgOffset, setSvgOffset] = useState({ left: 0, top: 0 });    
+    // 在组件挂载时获取SVG容器的偏移量
+    useEffect(() => {
+    function updateOffset() {
+        if (svgRef.current) {
+        const rect = svgRef.current.getBoundingClientRect();
+        setSvgOffset({ left: rect.left, top: rect.top });
+        }
+    }
+    updateOffset();
+    window.addEventListener('resize', updateOffset);
+    return () => window.removeEventListener('resize', updateOffset);
+    }, []);
+
+
+
     const onPointerDownPiece = (e: React.PointerEvent, id: string) => {
         if (isComplete) return;
         const piece = pieces.find((p) => p.id === id);
@@ -95,8 +113,8 @@ export default function Tangram({
         (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
         draggingRef.current = {
             id,
-            startX: e.clientX,
-            startY: e.clientY,
+            startX: e.clientX - svgOffset.left, // 关键坐标修正
+            startY: e.clientY - svgOffset.top,
             origX: piece.x,
             origY: piece.y,
         };
@@ -105,8 +123,9 @@ export default function Tangram({
     const onPointerMove = (e: React.PointerEvent) => {
         if (draggingRef.current) {
             const d = draggingRef.current;
-            const dx = e.clientX - d.startX;
-            const dy = e.clientY - d.startY;
+            // 关键：所有坐标都需要减去SVG偏移
+            const dx = (e.clientX - svgOffset.left) - d.startX;
+            const dy = (e.clientY - svgOffset.top) - d.startY;
             setPieces((prev) => {
                 const newPieces = prev.map((p) =>
                     p.id === d.id ? { ...p, x: d.origX + dx, y: d.origY + dy } : p
@@ -189,6 +208,7 @@ export default function Tangram({
                 onPointerCancel={onPointerUp}
             >
                 <svg
+                    ref={svgRef}
                     width="100%"
                     height="100%"
                     viewBox={`0 0 ${width} ${height}`}
