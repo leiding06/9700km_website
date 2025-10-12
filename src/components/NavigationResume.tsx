@@ -92,7 +92,7 @@ export default function ResumeNavigation({
                 More about me
                 </button>
 
-                {/* 可选：添加一个醒目的行动按钮 */}
+                {/* Right corner: contact */}
                 <button
                 onClick={() => scrollToSection('contact')}
                 className="bg-grey-600 hover:bg-purple-700  text-white text-italic px-4 py-2 rounded-lg text-md font-medium transition-colors"

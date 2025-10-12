@@ -35,6 +35,7 @@ export default function LeiDingResume() {
     
     
     return (
+        
         <div className="min-h-screen bg-black">
         <CustomCursor/>
         <ResumeNavigation personName="Lei Ding" />

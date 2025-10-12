@@ -15,7 +15,7 @@ interface TechItem {
     // Frontend
     { name: 'React', icon: '/tech-icons/react.svg', color: 'bg-[#61DAFB]', category: 'frontend' },
     { name: 'Next.js', icon: '/tech-icons/nextdotjs.svg', color: 'bg-black', category: 'frontend' },
-    { name: 'HTML5', icon: '/tech-icons/html5.svg', color: 'bg-[#E34F26]', category: 'frontend' },
+    
     { name: 'CSS3', icon: '/tech-icons/css.svg', color: 'bg-[#1572B6]', category: 'frontend' },
     { name: 'Tailwind CSS', icon: '/tech-icons/tailwindcss.svg', color: 'bg-[#06B6D4]', category: 'frontend' },
     { name: 'JavaScript', icon: '/tech-icons/javascript.svg', color: 'bg-[#F7DF1E]', category: 'frontend' },
