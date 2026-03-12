@@ -25,37 +25,30 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* 蓝粉紫渐变 */
 .cursor-glow {
-  width: 40px;
-  height: 40px;
-  background: 
-    radial-gradient(
-      circle at 35% 35%,
-      rgba(96, 165, 250, 0.9) 0%,       /* 蓝色 */
-      rgba(139, 92, 246, 0.7) 20%,      /* 紫色 */
-      rgba(192, 132, 252, 0.6) 40%,     /* 浅紫 */
-      rgba(236, 72, 153, 0.5) 60%,      /* 粉色 */
-      rgba(249, 168, 212, 0.3) 80%,     /* 浅粉 */
-      transparent 100%
-    ),
-    radial-gradient(
-      circle at 65% 65%,
-      rgba(59, 130, 246, 0.8) 0%,       /* 深蓝 */
-      rgba(168, 85, 247, 0.6) 30%,      /* 紫罗兰 */
-      rgba(232, 121, 249, 0.4) 60%,     /* 亮紫 */
-      transparent 90%
-    );
+  width: 32px;
+  height: 32px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(220, 235, 255, 0.6) 40%,
+    transparent 70%
+  );
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  filter: blur(15px) brightness(1.2);
+  filter: blur(8px) brightness(1.4);
   mix-blend-mode: screen;
-  animation: rotate-hue 8s linear infinite;
+  transition: width 0.15s ease, height 0.15s ease, opacity 0.15s ease;
 }
 
+.cursor-glow.hover {
+  width: 52px;
+  height: 52px;
+  opacity: 0.7;
+}
 /* 色相旋转动画 */
 @keyframes rotate-hue {
   0% {

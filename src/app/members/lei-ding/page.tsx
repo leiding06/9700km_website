@@ -7,7 +7,33 @@ export default function LeiDingResume() {
     const projects = [
     {
         id: 1,
-        title: "Advanced Mortgage Calculator",
+        title: "GIS Expression Code Camp",
+        description: "An interactive web-based learning platform for mastering QGIS and ArcGIS field calculator expressions through progressive exercises and tests.",
+        image: "/submit.png",
+        link: "https://gisexpressioncodecamp.vercel.app",
+        objectives: [
+            "Coding environent for learning GIS expression languages",
+            "Answer validation with hints",
+            "Progress tracking",
+            "Test-gated level progression system"
+        ]
+    },
+    {
+        id: 2,
+        title: "GIS Auditor Report Plugin",
+        description: "A QGIS plugin that automatically generates comprehensive HTML audit reports for GIS projects, helping teams maintain data quality standards.",
+        image: "/gis_auditor_report_html_snapshot.png",
+        link: "https://plugins.qgis.org/plugins/gis_auditor_report/#plugin-details",
+        objectives: [
+            "Automated GIS project audit report generation",
+            "Published on official QGIS Plugin Repository",
+            "HTML report output with layer and field statistics",
+            "Open source contribution to the QGIS community"
+        ]
+    },
+        {
+        id: 3,
+        title: "Advanced Mortgage Calculator (working...)",
         description: "Advanced mortgage calculator with inflation projection, showing how future payments compare to today's purchasing power.",
         image: "/mortgageCalculator.png",
         objectives: [
@@ -19,8 +45,8 @@ export default function LeiDingResume() {
     },
 
     {
-        id: 2,
-        title: "Pixel Polygonizer",
+        id: 4,
+        title: "Pixel Polygonizer (not public currently)",
         description: "Rapid feature detection and polygonization based on value thresholds (with QGIS or standalone). ",
         image: "/greyscalePolygonizer.png",
         objectives: [
@@ -43,13 +69,9 @@ export default function LeiDingResume() {
         <main className="pt-20"> 
             <section id="aboutMe" className="py-20 bg-black">
             <div className="max-w-4xl mx-auto text-center">
-                <h1 
-                className="text-2xl font-bold text-gray-300 mb-6 text-center"
-                style={{ textShadow: "2px 2px 4px rgba(39, 2, 64, 0.6)" }}
-                >
-                Hi, I’m Lei
-                </h1>
-
+            <h1 className="text-6xl font-bold bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-transparent mb-6">
+                Hi, I&apos;m Lei
+            </h1>
                 <p className="text-md mt-4 text-center">
                 <span className="text-purple-300 font-semibold">Full-stack developer</span>
                 <span className="text-gray-300"> with a passion for turning ideas into functional applications</span>
@@ -150,7 +172,7 @@ export default function LeiDingResume() {
             <div className="mb-12">
                 <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold text-purple-400">Open Source Contributor & Software Engineer</h3>
-                    <span className="text-gray-400">05/2024 – Present</span>
+
                 </div>
                 <p className="text-gray-300 mb-4 text-center">
                     Dedicated to building and sharing tools for GIS, web apps, and plugin development.
@@ -214,6 +236,7 @@ export default function LeiDingResume() {
                     description={project.description}
                     image={project.image}
                     objectives={project.objectives}
+                    link={project.link} 
                     />
                 ))}
                 </div>
